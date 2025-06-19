@@ -6,10 +6,12 @@ public class Organism : MonoBehaviour
     private float timer = 0f;
     float randomSpeed;
     float randomMoveTime;
+    private Living living; // reference to the Living script
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        living = GetComponent<Living>(); // get the Living script component
         randomSpeed = Random.Range(1f, 3f); // random speed between 1 and 3
         randomMoveTime = Random.Range(3f, 7f); // move every 3 to 7 seconds at random
     }
@@ -20,7 +22,7 @@ public class Organism : MonoBehaviour
         // every second timer increments
         timer += Time.deltaTime;
 
-        if (timer > randomMoveTime) // only roam once every randomMoveTime seconds
+        if (timer > randomMoveTime && living.alive) // only roam once every randomMoveTime seconds, and only move if alive
         {
             StartCoroutine(CoRoam());
             timer = 0f; // reset the timer
