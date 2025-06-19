@@ -4,11 +4,14 @@ using UnityEngine;
 public class Organism : MonoBehaviour
 {
     private float timer = 0f;
+    float randomSpeed;
+    float randomMoveTime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        randomSpeed = Random.Range(1f, 3f); // random speed between 1 and 3
+        randomMoveTime = Random.Range(3f, 7f); // move every 3 to 7 seconds at random
     }
 
     // Update is called once per frame
@@ -17,7 +20,7 @@ public class Organism : MonoBehaviour
         // every second timer increments
         timer += Time.deltaTime;
 
-        if (timer > 5f) // only roam after 5 seconds pass
+        if (timer > randomMoveTime) // only roam once every randomMoveTime seconds
         {
             StartCoroutine(CoRoam());
             timer = 0f; // reset the timer
@@ -29,7 +32,7 @@ public class Organism : MonoBehaviour
     {
         Debug.Log("roaming");
 
-        float roamTime = 3f;
+        float roamTime = Random.Range(1f, 3f); // roam for random time between 1 and 3 sec
 
         // map max coords, used for random
         int[] max_X = { -8, 8 };
@@ -49,6 +52,6 @@ public class Organism : MonoBehaviour
     void Roam(Vector3 pos)
     {
         // move the organism to the new position over 3 sec
-        transform.position = Vector3.MoveTowards(transform.position, pos, 3f * Time.deltaTime); // move in 3 seconds
+        transform.position = Vector3.MoveTowards(transform.position, pos, randomSpeed * Time.deltaTime); // move
     }
 }

@@ -7,8 +7,7 @@ public class Living : MonoBehaviour
     public float timer = 0f;
     public int thirst = 100; // at thirst 0, slowly decrease health
     public bool alive = true;
-
-
+    float wait = 1f; // wait for 1 second before destroying the organism
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,7 +27,7 @@ public class Living : MonoBehaviour
 
         if (thirst <= 0) // checking if dehydrated
         {
-            health -= Time.deltaTime * 10f; // lose health over time
+            health -= Time.deltaTime * 30f; // lose health over time
             Debug.Log("current health: " + health); // debug log health
         }
 
@@ -36,7 +35,16 @@ public class Living : MonoBehaviour
         {
             Debug.Log("blob is dead");
             alive = false;
-            Destroy(gameObject); // destroy the organism
+            GetComponent<SpriteRenderer>().color = Color.red; // change color to red
+        }
+
+        if (!alive)
+        {
+            wait -= Time.deltaTime; // wait for 1 second before destroying the organism
+            if (wait <= 0f)
+            {
+                Destroy(gameObject); // destroy the organism
+            }
         }
     }
 }
