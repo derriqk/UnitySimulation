@@ -22,13 +22,13 @@ public class Living : MonoBehaviour
         {
             thirst -= 10; // decreast thirst by 10 every 4 seconds
             timer = 0f; // reset the timer
-            Debug.Log("thirst: " + thirst); // debug log thirst
+            // Debug.Log("thirst: " + thirst); // debug log thirst
         }
 
         if (thirst <= 0) // checking if dehydrated
         {
             health -= Time.deltaTime * 30f; // lose health over time
-            Debug.Log("current health: " + health); // debug log health
+            // Debug.Log("current health: " + health); // debug log health
         }
 
         if (health <= 0) // checking if dead

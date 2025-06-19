@@ -32,7 +32,7 @@ public class Organism : MonoBehaviour
     // this is a coroutine that will roam the organism
     private System.Collections.IEnumerator CoRoam()
     {
-        Debug.Log("roaming");
+        // Debug.Log("roaming");
 
         float roamTime = Random.Range(1f, 3f); // roam for random time between 1 and 3 sec
 

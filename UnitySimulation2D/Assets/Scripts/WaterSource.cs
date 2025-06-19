@@ -24,6 +24,21 @@ public class WaterSource : MonoBehaviour
             if (living.alive) // check alive
             {
                 living.thirst = 100; // reset thirst to 100
+                Debug.Log("drank");
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Blob"))
+        {
+            //Debug.Log("touched"); // testing
+            Living living = collision.gameObject.GetComponent<Living>();
+            if (living.alive) // check alive
+            {
+                living.thirst = 100; // thirst keeps at 100 when staying in water
+                // Debug.Log("drinking");
             }
         }
     }
