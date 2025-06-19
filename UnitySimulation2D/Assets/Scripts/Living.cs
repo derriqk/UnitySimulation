@@ -20,7 +20,7 @@ public class Living : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > 4f)
         {
-            thirst -= 50; // decreast thirst by 10 every 4 seconds
+            thirst -= 10; // decreast thirst by 10 every 4 seconds
             timer = 0f; // reset the timer
             Debug.Log("thirst: " + thirst); // debug log thirst
         }

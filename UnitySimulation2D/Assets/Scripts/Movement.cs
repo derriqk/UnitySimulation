@@ -51,7 +51,7 @@ public class Organism : MonoBehaviour
 
     void Roam(Vector3 pos)
     {
-        // move the organism to the new position over 3 sec
+        // move the organism to the new position
         transform.position = Vector3.MoveTowards(transform.position, pos, randomSpeed * Time.deltaTime); // move
     }
 }
