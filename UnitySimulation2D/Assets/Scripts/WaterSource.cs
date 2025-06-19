@@ -24,7 +24,7 @@ public class WaterSource : MonoBehaviour
             if (living.alive) // check alive
             {
                 living.thirst = 100; // reset thirst to 100
-                Debug.Log("drank");
+                //Debug.Log("drank");
             }
         }
     }
