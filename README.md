@@ -12,5 +12,6 @@
     Movement.cs: attach to a 2d object to move randomly every x seconds
     Watersource.cs: handles collision and repleneshing thirst
     BerryScript.cs: handles the growth size and edible-ness(?) of the fruit
+    OverworldScript.cs: only spawns in random blobs, plan to do more with other world rules, perhaps random events
 
 </pre>
