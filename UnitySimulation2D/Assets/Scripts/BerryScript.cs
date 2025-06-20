@@ -81,6 +81,9 @@ public class BerryScript : MonoBehaviour
         {
             // Debug.Log("berry ate"); // test
             eaten = true; // it got eaten
+
+            collision.gameObject.GetComponent<Living>().hunger = 100; // reset hunger
+            collision.gameObject.GetComponent<Living>().justAte = true; // set justAte to true
         }
     }
 }

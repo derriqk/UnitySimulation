@@ -37,8 +37,9 @@ public class WaterSource : MonoBehaviour
             Living living = collision.gameObject.GetComponent<Living>();
             if (living.alive) // check alive
             {
-                living.thirst = 100; // thirst keeps at 100 when staying in water
                 // Debug.Log("drinking");
+                living.thirst = 100; // thirst keeps at 100 when staying in water
+                living.justDrank = true; // set justDrank to true
             }
         }
     }
