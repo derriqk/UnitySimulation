@@ -5,10 +5,12 @@
   Current additions to the overworld scene
     Blob: has health and thirst level, a 2d sprite with collision
     Watersource: replenishes thirst, 2d sprite with collision
+    Bush: has berries that can be eaten
 
   Current scripts:
     Living.cs: attach to a 2d object to have stats (hp and thirst)
     Movement.cs: attach to a 2d object to move randomly every x seconds
     Watersource.cs: handles collision and repleneshing thirst
+    BerryScript.cs: handles the growth size and edible-ness(?) of the fruit
 
 </pre>
