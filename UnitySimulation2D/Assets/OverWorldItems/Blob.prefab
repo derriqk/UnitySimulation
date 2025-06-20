@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2688441984391353263}
   - component: {fileID: 841416381874269143}
   - component: {fileID: 1892227044012006260}
+  - component: {fileID: 3273302322283744417}
   m_Layer: 0
   m_Name: Blob
   m_TagString: Blob
@@ -179,6 +180,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  timer: 0
+  justDrank: 0
+  justAte: 0
   thirst: 100
   alive: 1
+  hunger: 100
+--- !u!114 &3273302322283744417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4445148841339678471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b31f36dd21f6e429b6a6a654895509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

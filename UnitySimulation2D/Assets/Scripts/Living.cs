@@ -3,11 +3,12 @@ using UnityEngine;
 public class Living : MonoBehaviour
 {
     // this is stats for the organism
-    public float health = 100f;
+    public int health = 100;
     public bool justDrank = false;
     public bool justAte = false;
     float drinktimer = 0f;
     float eattimer = 0f;
+    float healthTimer = 0f; 
     public int thirst = 100; // at thirst 0, slowly decrease health
     public bool alive = true;
     public int hunger = 100;
@@ -23,11 +24,26 @@ public class Living : MonoBehaviour
     {
         drinktimer += Time.deltaTime;
         eattimer += Time.deltaTime;
+
+        // caps
+        if (hunger > 100)
+        {
+            hunger = 100; // cap hunger at 100
+        }
+        if (thirst > 100)
+        {
+            thirst = 100; // cap thirst at 100
+        }
+
         if (drinktimer > 2f && !justDrank)
         {
             thirst -= 10; // decreast thirst by 10 
             drinktimer = 0f; // reset the timer
-            // Debug.Log("thirst: " + thirst); // debug log thirst
+            
+            if (thirst < 0)
+            {
+                thirst = 0; // cap thirst at 0
+            }
         }
         if (drinktimer > 5f)
         {
@@ -39,6 +55,11 @@ public class Living : MonoBehaviour
         {
             hunger -= 10; // decrease hunger by 10 
             eattimer = 0f; // reset the timer
+
+            if (hunger < 0)
+            {
+                hunger = 0; // cap hunger at 0
+            }
         }
         if (eattimer > 8f)
         {
@@ -48,21 +69,33 @@ public class Living : MonoBehaviour
 
         if (thirst <= 0 || hunger <= 0) // checking if dehydrated or hungry
         {
-            health -= Time.deltaTime * 30f; // lose health over time
+            healthTimer += Time.deltaTime;
+            if (healthTimer > 1f) // every second
+            {
+                health -= 5;
+                healthTimer = 0f; 
+            }
+            
         }
 
         if (thirst > 90 || hunger > 90 )
         {
-            health += Time.deltaTime * 10f; // gain health over time
-            if (health > 100f)
+            healthTimer += Time.deltaTime;
+            if (healthTimer > 1f) // every second
             {
-                health = 100f; // cap health at 100
+                health += 5;
+                healthTimer = 0f; 
+            }
+
+            if (health > 100)
+            {
+                health = 100; // cap health at 100
             }
         }
 
         if (health <= 0) // checking if dead
         {
-            Debug.Log("blob is dead");
+            // Debug.Log("blob is dead");
             alive = false;
             GetComponent<SpriteRenderer>().color = Color.red; // change color to red
         }

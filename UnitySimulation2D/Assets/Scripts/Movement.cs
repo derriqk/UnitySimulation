@@ -43,7 +43,7 @@ public class Organism : MonoBehaviour
         float randomX = Random.Range(max_X[0], max_X[1]);
         float randomY = Random.Range(max_Y[0], max_Y[1]);
 
-        while (roamTime > 0f)
+        while (roamTime > 0f && GetComponent<Living>().alive) 
         {
             Roam(new Vector3(randomX, randomY, 0f));
             roamTime -= Time.deltaTime; // decrement the roam time
