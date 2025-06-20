@@ -13,13 +13,15 @@ public class BerryScript : MonoBehaviour
     float randomTimer1;
     float randomTimer2;
     float randomTimer3;
-    
-    private Color originalColor; // to store the original color of the berry
+
+    // colors for each berry stage
+    public Color color1;
+    public Color color2;
+    public Color color3;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        originalColor = GetComponent<SpriteRenderer>().color;
         randomTimer1 = Random.Range(2f, 4f);
         randomTimer2 = Random.Range(2f, 6f);
         randomTimer3 = Random.Range(2f, 6f);
@@ -29,23 +31,24 @@ public class BerryScript : MonoBehaviour
     {
         timer += Time.deltaTime; // increment timer        
 
-        if ((timer > 1f + randomTimer1 ) && !berrySpawned)
+        if ((timer > 1f + randomTimer1) && !berrySpawned)
         {
+            GetComponent<SpriteRenderer>().color = new Color(color1.r, color1.g, color1.b, 1f); // set berry color
             transform.localScale = new Vector3(0.1f, 0.1f, 0.1f); // initial berry size
             GetComponent<SpriteRenderer>().enabled = true;  // make visible
             berrySpawned = true; // set berry spawned flag to true
         }
 
-        if ((timer > 5f + randomTimer2 ) && !tick1) // after this time
+        if ((timer > 5f + randomTimer2) && !tick1) // after this time
         {
-            GetComponent<SpriteRenderer>().color = new Color(1f, 0.5f, 0.5f); // change berry color to red
+            GetComponent<SpriteRenderer>().color = new Color(color2.r, color2.g, color2.b, 1f); // change berry color
             transform.localScale = new Vector3(0.2f, 0.2f, 0.2f); // increase berry size
             tick1 = true; // set true so it doesnt run again
         }
 
         if ((timer > 12f + randomTimer3) && !tick2) // after this time
         {
-            GetComponent<SpriteRenderer>().color = new Color(0.8f, 0.2f, 0.2f); // change berry color to darker red
+            GetComponent<SpriteRenderer>().color = new Color(color3.r, color3.g, color3.b, 1f); // change berry color
             transform.localScale = new Vector3(0.4f, 0.4f, 0.4f); // increase berry size more
             edible = true; // set berry to edible
             tick2 = true; // set true so it doesnt run again
@@ -54,7 +57,8 @@ public class BerryScript : MonoBehaviour
         if (eaten)
         {
             GetComponent<SpriteRenderer>().enabled = false; // deactivate the berry
-            GetComponent<SpriteRenderer>().color = originalColor; // original color
+            GetComponent<SpriteRenderer>().color = new Color(color1.r, color1.g, color1.b, 1f); // reset berry color
+
             timer = 0f; // reset timer if berry is eaten
 
             // reset flags
@@ -62,11 +66,21 @@ public class BerryScript : MonoBehaviour
             tick1 = false;
             tick2 = false;
             edible = false;
-            
+            eaten = false; 
+
             // reset random timers
             randomTimer1 = Random.Range(2f, 4f);
             randomTimer2 = Random.Range(2f, 6f);
             randomTimer3 = Random.Range(2f, 6f);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Blob") && edible)
+        {
+            // Debug.Log("berry ate"); // test
+            eaten = true; // it got eaten
         }
     }
 }
