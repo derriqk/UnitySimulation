@@ -39,7 +39,7 @@ public class Living : MonoBehaviour
         {
             thirst -= 10; // decreast thirst by 10 
             drinktimer = 0f; // reset the timer
-            
+
             if (thirst < 0)
             {
                 thirst = 0; // cap thirst at 0
@@ -83,7 +83,7 @@ public class Living : MonoBehaviour
             healthTimer += Time.deltaTime;
             if (healthTimer > 1f) // every second
             {
-                health += 5;
+                health += 3;
                 healthTimer = 0f; 
             }
 
